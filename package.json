@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "Ivana Setiawan",
   "license": "MIT",
+  "scripts": {
+    "playground": "npm link && cd playground && npm i && npm link datadog-vue && npm run serve"
+  },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.5",
