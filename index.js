@@ -1,0 +1,32 @@
+import {
+    datadogLogs
+} from '@datadog/browser-logs';
+
+export default {
+    install(Vue, options) {
+        /**
+         * Rules:
+         * - Enable in client only
+         * - Not disabled
+         */
+        const isNotExecutable = !process.browser || options.disabled;
+        if (isNotExecutable) return;
+
+        /**
+         * Check before executing the plugin:
+         * - Client token must exist and not empty
+         * - Service name must exist and not empty
+         */
+        const initialCheck =
+            (!options.clientToken || options.clientToken.length === 0) &&
+            (!options.service || options.service.length === 0);
+        const loggingWarn = () => {
+            /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
+            console.warn(
+                'You are not using Datadog vue plugin. If you want to, you can enter a Datadog client token'
+            );
+            return;
+        };
+        initialCheck ? loggingWarn() : null;
+    }
+};
