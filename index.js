@@ -28,5 +28,28 @@ export default {
             return;
         };
         initialCheck ? loggingWarn() : null;
+
+        /**
+         * Initialising datadogLogs!
+         * See the params https://docs.datadoghq.com/logs/log_collection/javascript/#initialization-parameters
+         * Required: clientToken & site
+         */
+        datadogLogs
+            ?
+            datadogLogs.init({
+                clientToken: options.clientToken, // REQUIRED
+                site: 'datadoghq.eu', // REQUIRED
+                forwardErrorsToLogs: true,
+                sampleRate: 100,
+                service: options.service,
+                env: process.env.NODE_ENV,
+            }) :
+            null;
+
+        /**
+         * Add a context to all your loggers
+         * See the params https://docs.datadoghq.com/logs/log_collection/javascript/#global-context
+         */
+        datadogLogs.addLoggerGlobalContext('Site', options.service);
     }
 };
