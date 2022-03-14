@@ -4,5 +4,10 @@
   "description": "Datadog Vue.js plugin",
   "main": "index.js",
   "author": "Ivana Setiawan",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11"
+  }
 }
