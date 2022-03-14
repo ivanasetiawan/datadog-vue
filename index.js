@@ -51,5 +51,28 @@ export default {
          * See the params https://docs.datadoghq.com/logs/log_collection/javascript/#global-context
          */
         datadogLogs.addLoggerGlobalContext('Site', options.service);
-    }
+    },
+    /**
+     * Log functionality to Datadog
+     * @param  {String} message The message of your log that is fully indexed by Datadog.
+     * @param  {Object} messageContext A valid JSON object, which includes all attributes attached to the <MESSAGE>
+     * @param {String} status The status of your log; accepted status values are `debug`, `info`, `warn`, or `error`.
+     */
+    $log: function (
+        message = 'No message',
+        messageContext = {
+            function: 'noMessageContext'
+        },
+        status = 'error'
+    ) {
+        datadogLogs.logger.log(
+            message, {
+                context: {
+                    stack_trace: new Error().stack,
+                    ...messageContext,
+                },
+            },
+            status
+        );
+    },
 };
