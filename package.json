@@ -11,8 +11,5 @@
     "@babel/preset-env": "^7.16.11",
     "eslint": "^8.11.0",
     "eslint-plugin-vue": "^8.5.0"
-  },
-  "dependencies": {
-    "@datadog/browser-logs": "^4.6.1"
   }
 }
