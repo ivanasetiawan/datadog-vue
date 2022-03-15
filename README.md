@@ -1,5 +1,3 @@
-# Datadog Vue Plugin - 03. Playground #
-To run the playground:
-```bash
-npm run playground
-```
+# Datadog Vue Plugin - 04. Bonus #
+- Log specific status
+- Client side improvement to the plugin
