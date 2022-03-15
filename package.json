@@ -2,7 +2,7 @@
   "name": "datadog-vue",
   "version": "1.0.0",
   "description": "Datadog Vue.js plugin",
-  "main": "index.js",
+  "main": "index.client.js",
   "author": "Ivana Setiawan",
   "license": "MIT",
   "scripts": {

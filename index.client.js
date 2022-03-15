@@ -9,7 +9,7 @@ export default {
          * - Enable in client only
          * - Not disabled
          */
-        const isNotExecutable = !process.browser || options.disabled;
+        const isNotExecutable = options.disabled;
         if (isNotExecutable) return;
 
         /**
@@ -75,4 +75,84 @@ export default {
             status
         );
     },
+	/**
+     * Log the message with "error" flag to Datadog
+     * @param  {String} message The message of your log that is fully indexed by Datadog.
+     * @param  {Object} messageContext A valid JSON object, which includes all attributes attached to the <MESSAGE>
+     */
+    $error: function (
+		message = "Empty message",
+		messageContext = { function: "messageContextMissing" }
+	) {
+		datadogLogs.logger.log(
+            message,
+            {
+                context: {
+                    stack_trace: new Error().stack,
+                    ...messageContext,
+                },
+            },
+            "error"
+		);
+	},
+	/**
+	 * Log the message with "warning" flag to Datadog
+	 * @param  {String} message The message of your log that is fully indexed by Datadog.
+	 * @param  {Object} messageContext A valid JSON object, which includes all attributes attached to the <MESSAGE>
+	 */
+	$warn: function (
+		message = "Empty message",
+		messageContext = { function: "messageContextMissing" }
+	) {
+		datadogLogs.logger.log(
+			message,
+			{
+			context: {
+				stack_trace: new Error().stack,
+				...messageContext,
+			},
+			},
+			"warn"
+		);
+	},
+	/**
+	 * Log the message with "info" status to Datadog
+	 * @param  {String} message The message of your log that is fully indexed by Datadog.
+	 * @param  {Object} messageContext A valid JSON object, which includes all attributes attached to the <MESSAGE>
+	 */
+	$info: function (
+		message = "Empty message",
+		messageContext = { function: "messageContextMissing" }
+	) {
+		datadogLogs.logger.log(
+			message,
+			{
+			context: {
+				stack_trace: new Error().stack,
+				...messageContext,
+			},
+			},
+			"info"
+		);
+	},
+	/**
+	 * Log the message with "debug" status to Datadog
+	 * @param  {String} message The message of your log that is fully indexed by Datadog.
+	 * @param  {Object} messageContext A valid JSON object, which includes all attributes attached to the <MESSAGE>
+	 */
+	$debug: function (
+		message = "Empty message",
+		messageContext = { function: "messageContextMissing" }
+	) {
+		datadogLogs.logger.log(
+			message,
+			{
+			context: {
+				stack_trace: new Error().stack,
+				...messageContext,
+			},
+			},
+			"debug"
+		);
+	},
 };
